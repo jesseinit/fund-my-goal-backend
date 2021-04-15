@@ -1,0 +1,89 @@
+{% extends 'email_alerts/email_base.html' %} {% block inner_content %}
+<div class="xerdeX_envelope">
+  <p style="margin-bottom: 2em; font-weight: bold;">
+    Hi {{ user_first_name }},
+  </p>
+  <p style="margin-bottom: 1em;">
+    You have successfully created a new savings plan.
+  </p>
+  <p style="margin-bottom: 1em;">
+    Details of the new plan are shown below:
+
+    <table style="border-radius: 0.4em; border-spacing: 0; border: 0.003em solid #E8EDFF; font-size: 0.5em; font-weight: bold; padding-bottom: 2em;">
+          <thead style="color: #9AA0BA;">
+            <tr style="font-size: 1.5em; color: #859CFB;">
+              <td style="padding: 0em 1.5em; height: 2.5em; width: 12em;">Savings plan name</td>
+            </tr>
+            <tr>
+              <td style="padding: 0em 2.15em; height: 1.5em; width: 12em;">House Rent</td>
+            </tr>
+            <tr>
+              <td colspan="2"><hr style="background-color: #F4F4F7; height: 0.15em; border: 0;"></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="2"><span style="display:inline-block; height: 2em;"></span></td>
+            </tr>
+              <tr>
+                <td style="padding: 0 2em; height: 3.5em;">
+                  <span style="color: #859CFB;">Plan type</span>
+                  <br>
+                  <span style="color: #9AA0BA;">Target</span>
+                </td>
+                <td style="padding: 0 2em; height: 3.5em; text-align: right;">
+                  <span style="color: #859CFB;">Start Date</span>
+                  <br>
+                  <span style="color: #9AA0BA;">05/10/2019</span>
+                </td>
+              </tr>
+            <tr>
+              <td colspan="2"><span style="display:inline-block; height: 2em;"></span></td>
+            </tr>
+              <tr>
+                <td style="padding: 0 2em; height: 3.5em;">
+                  <span style="color: #859CFB;">Target Amount</span>
+                  <br>
+                  <span style="color: #9AA0BA;">N1,000,000</span>
+                </td>
+                <td style="padding: 0 2em; height: 3.5em; text-align: right;">
+                  <span style="color: #859CFB;">Expected End Date</span>
+                  <br>
+                  <span style="color: #9AA0BA;">05/07/2020</span>
+                </td>
+              </tr>
+            <tr>
+             <td colspan="2"><span style="display:inline-block; height: 2em;"></span></td>
+            </tr>
+              <tr>
+                <td style="padding: 0 2em; height: 3.5em;">
+                  <span style="color: #859CFB;">Savings Amount</span>
+                  <br>
+                  <span style="color: #9AA0BA;">N100,00</span>
+                </td>
+                <td style="padding: 0 2em; height: 3.5em; text-align: right;">
+                  <span style="color: #859CFB;">Expected Return</span>
+                  <br>
+                  <span style="color: #9AA0BA;">N1,600,000</span>
+                </td>
+              </tr>
+            <tr>
+              <td colspan="2"><span style="display:inline-block; height: 2em;"></span></td>
+            </tr>
+              <tr>
+                <td style="padding: 0 2em; height: 3.5em;">
+                  <span style="color: #859CFB;">Saving Frequency</span>
+                  <br>
+                  <span style="color: #9AA0BA;">Monthly</span>
+                </td>
+                <td style="padding: 0 2em; height: 3.5em; text-align: right;">
+                  <span style="color: #859CFB;">Next Saving Date</span>
+                  <br>
+                  <span style="color: #9AA0BA;">05/11/2019</span>
+                </td>
+              </tr>
+          </tbody>
+        </table>
+  </p>
+  {% endblock inner_content %}
+</div>

@@ -1,0 +1,80 @@
+{% extends 'email_alerts/base.html' %}
+{% load humanize %}
+{% load template_extras %}
+{% block inner_content %}
+    <tbody>
+      <tr>
+        <td colspan="2">
+          <h3 class="main__greet-text">Hi {{ member_fullname }}</h3>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <p class="mb-20">
+            {{inviter}} just invited you to join the
+            <span style="font-weight: 500;">{{goal_name}}</span>
+            group goal. See details below.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p style="font-weight: 500;">
+            Group Members
+          </p>
+        </td>
+      </tr>
+      {% for member in member_list %}
+      <tr>
+        <td style="padding: 0.2rem 0;">
+          <span class="current-user--index">{{forloop.counter}}.</span>
+          <p style="display: inline;">{{member.member_fullname}}</p>
+          {% if member.email == email %}
+          <span class="current-user--badge">You</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <td>
+          <p style="font-weight: 500; margin-top: 25px;">
+            Contribution Details
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p style="display: inline;">Goal Target:</p>
+          <span style="font-weight: bold;">{{goal_currency}} {{goal_target|convert_kobo_to_naira|intcomma}}</span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p style="display: inline;">Goal Duration:</p>
+          <span style="font-weight: bold;">{{goal_duration}}</span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a
+            class="link-button__default link-button__accept"
+            href="{{ accept_link }}"
+          >
+            Accept Invitation
+          </a>
+          <a
+            class="link-button__default link-button__reject"
+            href="{{ reject_link }}"
+          >
+            Reject Invitation
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p style="font-style: italic; margin-top: 10px; font-size: 0.8em">Note: This invitation expires in 7 days from now</p>
+        </td>
+      </tr>
+    </tbody>
+{% endblock inner_content %}
+

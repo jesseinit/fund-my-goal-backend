@@ -1,0 +1,20 @@
+version: "3.3"
+
+services:
+  tudo-api:
+    build: .
+    image: tudo-api:prod
+    container_name: tudo-api
+    restart: unless-stopped
+    ports:
+      - "1000:8000"
+    volumes:
+      - .:/tudo-api
+  tudo-redis:
+    image: redis
+    container_name: tudo-redis
+    restart: unless-stopped
+    ports:
+      - "6378:6379"
+    volumes:
+      - ./tudo_redis:/data

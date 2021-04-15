@@ -1,0 +1,5 @@
+[flake8]
+ignore = E111,E114, E129, E127
+exclude = */migrations, *settings.py, */tests, conftest.py
+
+max-line-length=88

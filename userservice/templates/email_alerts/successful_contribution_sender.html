@@ -1,0 +1,27 @@
+{% extends 'email_alerts/email_base.html' %}
+{% load humanize %}
+{% load template_extras %}
+{% block inner_content %}
+<div class="xerdeX_envelope">
+  <p style="margin-bottom: 2em; font-weight: bold;">
+    Hi {{ contributor_name }},
+  </p>
+  <p style="margin-bottom: 1em;">
+    Thank you for contributing towards this goal!
+  </p>
+  <p style="margin-bottom: 1em;">
+    Friends like you are rare, we appreciate your kindness and commitment to help achieve this goal.
+  </p>
+  <p style="margin-bottom: 1em;">
+    Your contribution has been received and added to {{ user_first_name }}’s Tudo goal.
+  </p>
+  <p style="margin-bottom: 1em;">
+    Keep being the great friend you are! 😎
+  </p>
+
+  <p style="margin-top: 3em;">
+    Love,<br />
+    The Tudo team
+  </p>
+</div>
+{% endblock inner_content %}

@@ -1,0 +1,27 @@
+{% extends 'email_alerts/email_base.html' %} {% block inner_content %}
+<div class="xerdeX_envelope">
+  <p style="margin-bottom: 2em; font-weight: bold;">
+    Hello {{ user_first_name }},
+  </p>
+
+  <p style="margin-bottom: 1em;">
+    Your friend {{ invitee_first_name }} just accepted your invite to join the
+      <b>{{ goal_name|title }}</b> group Tudo goal.
+  </p>
+
+  <p style="margin-bottom: 1em;">
+      {% if members_left|length > 1 %}
+        We wait for {{ members_left|slice:":-1"|join:", "|title }} and {{ members_left|last|title }} to accept your invite.
+      {% elif members_left|length == 1 %}
+        However, {{ members_left|join:", "|title }} is yet to accept your invite.
+      {% else %}
+        All your invited friends have now either accepted or rejected your invite.
+      {% endif %}
+
+  </p>
+
+  <p style="margin-bottom: 3em;">
+    Goodluck smashing those goals!💪
+  </p>
+</div>
+{% endblock inner_content %}

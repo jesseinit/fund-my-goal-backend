@@ -1,0 +1,35 @@
+{% extends 'email_alerts/base.html' %}
+{% load humanize %}
+{% load template_extras %}
+{% block inner_content %}
+<tbody>
+  <tr>
+    <td>
+      <h3 class="main__greet-text">Congratulations {{ user_first_name }},</h3>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p style="margin-bottom: 1em;">
+        Your friend {{ contributor_first_name }} just added {{ contributed_amount|convert_kobo_to_naira }} {{ currency }}
+          towards your Tudo goal!
+      </p>
+      <p style="margin-bottom: 1em;">
+        Yass, time to pop some bottles right?
+      </p>
+      <p style="margin-bottom: 1em;">
+        Don’t worry we’ll do that for you while you focus on reaching your goal
+        target! 😛.
+      </p>
+      <p style="margin-bottom: 1em;">
+        Thank us later! The amount raised so far for this goal is
+        {{ currency }} {{ tudo_current_amount|convert_kobo_to_naira }} out of
+          {{ currency }} {{ tudo_target_amount|convert_kobo_to_naira }}.
+      </p>
+      <p style="margin-bottom: 1em;">
+        Don’t worry, you’re almost there. Keep hitting that share button, goodluck!
+      </p>
+    </td>
+  </tr>
+</tbody>
+{% endblock inner_content %}

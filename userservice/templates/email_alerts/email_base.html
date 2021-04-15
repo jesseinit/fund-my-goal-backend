@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <title>Tudo Password Reset</title>
+    <style>
+      body {
+        font-family: "Montserrat";
+      }
+
+      .container {
+        margin: 0% 10%;
+      }
+
+      .header {
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 7%;
+      }
+
+      .header-section {
+        height: 100%;
+        padding-top: 1%;
+        color: #7594fb;
+        font-size: 2em;
+        font-weight: bolder;
+      }
+
+      hr {
+        border: 0.006em solid #e1e2e2;
+      }
+
+      .content {
+        font-size: 1.2em;
+      }
+
+      .mobile-hint {
+        background-color: white;
+        color: #848688;
+        padding: 1% 10%;
+        font-size: 1em;
+      }
+
+      .mobile-link {
+        color: #7594fb;
+        text-decoration: none;
+      }
+
+      .sm-icon {
+        height: 2em;
+        width: 2em;
+      }
+
+      table{
+        font-size: 1em;
+      }
+
+      .footer {
+        background-color: #7594fb;
+        color: white;
+        margin: 10% 0 0 0;
+        padding-bottom: 1em;
+      }
+
+      ul {
+        list-style-type: none;
+        padding-left: 2em;
+      }
+
+      ul li:before {
+        content: "–";
+        position: absolute;
+        margin-left: -1em;
+      }
+
+      .btn-container{
+        display: flex;
+        padding: 10px 0;
+      }
+
+      .link-button {
+        display: block;
+        width: 100%;
+        background: #7594fb;
+        text-decoration: none;
+      }
+
+      .link_text {
+        color: #fff;
+        padding: 0 10px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="header-section container">
+        Tudo.
+        <hr />
+      </div>
+    </div>
+    <section class="content container">
+            {% block inner_content %} {% endblock inner_content %}
+    </section>
+
+    <div class="footer">
+      <div class="mobile-hint">
+        <hr style="margin-bottom: 1%;" />
+        Achieve your goals faster on Tudo, available on
+        <a class="mobile-link" href="#">iOS</a> and
+        <a class="mobile-link" href="#">Android</a>
+      </div>
+      <table class="container" style="width: 80%; margin-top: 2em; margin-left: 10%;">
+        <tr>
+          <td
+            style="font-weight: bolder; font-size: 2em; padding-bottom: 0.5em;"
+          >
+            Tudo.
+          </td>
+          <td style="text-align: right; padding-bottom: 0.5em;">
+            <span><img class="sm-icon" src="https://res.cloudinary.com/haks/image/upload/v1575554027/instagram.png" alt="" style="margin-right: 1.5em;"></span>
+            <span><img class="sm-icon" src="https://res.cloudinary.com/haks/image/upload/v1575554026/linkedin.png" alt="" style="margin-right: 1.5em;"></span>
+            <span><img class="sm-icon" src="https://res.cloudinary.com/haks/image/upload/v1575554026/twitter.png" alt=""></span>
+          </td>
+        </tr>
+        <tr>
+          <td style="margin: 10px 0px;">
+              Contact Support
+          </td>
+          <td style="text-align: right; margin: 10px 0px;">
+              Tudo
+          </td>
+        </tr>
+          <td style="margin: 10px 0px;">
+            Legal
+          </td>
+          <td style="text-align: right; margin: 10px 0px;">
+              Prince Samuel Adedoyin Close,<br />
+              by Mercedes Benz, Ikate, Lekki,
+          </td>
+        </tr>
+        <tr>
+          <td style="margin: 10px 0px;">
+              Privacy Policy
+          </td>
+          <td style="text-align: right; margin: 10px 0px;">
+              Lagos
+          </td>
+
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,115 @@
+name: CI
+on: [push]
+
+jobs:
+  build-test:
+    # Job name is Greeting
+    name: Build and Test
+    # This job runs on Linux
+    runs-on: ubuntu-latest
+    # Service containers to run with `container-job`
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres
+        ports: ["5432:5432"]
+        # Provide the password for postgres
+        env:
+          POSTGRES_USER: ${{ secrets.DB_USERNAME }}
+          POSTGRES_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          POSTGRES_DB: ${{ secrets.DB_NAME }}
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10ms
+          --health-timeout 500ms
+          --health-retries 15
+
+      redis:
+        image: redis
+        ports: ["6379:6379"]
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10ms
+          --health-timeout 500ms
+          --health-retries 15
+
+    #Init Envs
+    env:
+      SECRET: ${{ secrets.SECRET }}
+      SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+      VFD_ACCESS_TOKEN: ${{ secrets.VFD_ACCESS_TOKEN }}
+      VFD_BANK_CODE_PREFIX: ${{ secrets.VFD_BANK_CODE_PREFIX }}
+      VFD_DEV_BANK_CODE: ${{ secrets.VFD_DEV_BANK_CODE }}
+      VFD_DEV_TO_ACCOUNT: ${{ secrets.VFD_DEV_TO_ACCOUNT }}
+      VFD_URL: ${{ secrets.VFD_URL }}
+      VFD_WALLET: ${{ secrets.VFD_WALLET }}
+      VFD_XERDE_POOL_ACCOUNT_BVN: ${{ secrets.VFD_XERDE_POOL_ACCOUNT_BVN }}
+      DB_HOST: ${{ secrets.DB_HOST }}
+      DB_NAME: ${{ secrets.DB_NAME }}
+      DB_USERNAME: ${{ secrets.DB_USERNAME }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      DB_PORT: ${{ secrets.DB_PORT }}
+      REDIS_CONNECTION_URL: ${{ secrets.REDIS_CONNECTION_URL }}
+
+    steps:
+      #Checkout Code
+      - uses: actions/checkout@v2
+
+      #Setup Python
+      - name: Setup Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+
+      # Run Tests
+      - name: Run Test Cases
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install -r requirements.txt
+          pytest -v -s --cov=./ --cov-report=xml
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage.xml
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: true
+
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    needs: build-test
+    if: github.ref == 'refs/heads/staging'
+    steps:
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.STAGING_HOST_IP }}
+          username: root
+          key: ${{ secrets.STAGING_SSH_KEY }}
+          script: |
+            cd xerde-user
+            git pull -r
+            make restart-staging
+
+  deploy-production:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: build-test
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - name: SSH into Server and Restart Containers
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.PRODUCTION_HOST_IP }}
+          username: root
+          key: ${{ secrets.PRODUCTION_SSH_KEY }}
+          script: |
+            cd xerde-user
+            git pull -r
+            make restart-production
