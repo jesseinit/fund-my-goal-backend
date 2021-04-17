@@ -100,13 +100,6 @@ class StateType(Enum):
     deleted = "deleted"
 
 
-def create_invite_code():
-    """ This function generate  """
-    code = int_to_base36(uuid.uuid4().int)
-    invite_code = code[:10]
-    return invite_code.upper()
-
-
 def decode_invite_code(invite_code):
     User = get_user_model()  # Todo - Add business model check here
     try:

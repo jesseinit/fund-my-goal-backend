@@ -1,52 +1,52 @@
-version: "3"
+version: '3'
 
 services:
-  tudo-redis:
+  goal-redis:
     image: redis
-    container_name: tudo-redis
+    container_name: goal-redis
     ports:
-      - "6378:6379"
+      - '6378:6379'
     volumes:
       # Create these volumes on the project root directory
-      - ./tudo_redis:/data
+      - ./goal_redis:/data
 
-  tudo-flower:
+  goal-flower:
     image: mher/flower
-    container_name: tudo-flower
-    command: ["flower", "--port=8888"]
+    container_name: goal-flower
+    command: ['flower', '--port=8888']
     environment:
-      - CELERY_BROKER_URL=redis://tudo-redis:6379/0
-      - CELERY_RESULT_BACKEND=redis://tudo-redis:6379/0
+      - CELERY_BROKER_URL=redis://goal-redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://goal-redis:6379/0
       - FLOWER_PORT=8888
     depends_on:
-      - tudo-api
-      - tudo-redis
+      - goal-api
+      - goal-redis
     ports:
-      - "8888:8888"
+      - '8888:8888'
 
-  tudo-api:
+  goal-api:
     build: .
-    image: tudo-api
-    container_name: tudo-api
+    image: goal-api
+    container_name: goal-api
     ports:
-      - "1000:8000"
+      - '1000:8000'
     volumes:
       # Create these volumes on the project root directory
-      - .:/tudo-api
+      - .:/goal-api
     depends_on:
-      - tudo-db
-      - tudo-redis
+      - goal-db
+      - goal-redis
 
-  tudo-db:
+  goal-db:
     restart: always
     image: postgres:11
-    container_name: tudo-db
+    container_name: goal-db
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=tudo_db
+      - POSTGRES_DB=goal_db
     volumes:
       # Create these volumes on the project root directory
-      - ./tudo_db:/var/lib/postgresql/data
+      - ./goal_db:/var/lib/postgresql/data
     ports:
-      - "5433:5432"
+      - '5433:5432'

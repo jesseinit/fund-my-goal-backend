@@ -1,5 +1,6 @@
 from django.db import models
 from utils.helpers import BaseAbstractModel
+from utils.constants import GOAL_DEFAULT_DESCRIPTION
 
 
 class GoalManager(models.Manager):
@@ -40,7 +41,7 @@ class Goal(BaseAbstractModel):
     goal_start_date = models.DateTimeField()
     goal_completion_date = models.DateTimeField()
     is_visible = models.BooleanField(default=False)
-    goal_description = models.TextField(null=True, default=default_Goal_description)
+    goal_description = models.TextField(null=True, default=GOAL_DEFAULT_DESCRIPTION)
     goal_duration = models.CharField(
         max_length=50,
         choices=[(Goal, Goal.value) for Goal in GoalDuration])

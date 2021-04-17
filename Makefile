@@ -38,4 +38,4 @@ restart-local:
 
 tests-local:
 	@ echo 'Running Container Tests'
-	@ docker-compose -f dc.local.yml run tudo-api pytest
+	@ docker-compose -f dc.local.yml run goal-api pytest
