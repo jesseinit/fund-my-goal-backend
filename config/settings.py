@@ -47,8 +47,9 @@ INSTALLED_APPS = [
     'corsheaders',
     'django.contrib.humanize',
     'userservice.apps.UserserviceConfig',
-    'goalservice.apps.GoalserviceConfig',
     'walletservice.apps.WalletserviceConfig',
+    'goalservice.apps.GoalserviceConfig',
+    'paymentservice.apps.PaymentserviceConfig',
     'django_filters',
 ]
 

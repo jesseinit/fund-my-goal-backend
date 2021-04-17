@@ -13,12 +13,3 @@ class TudoSearchFilter(filters.FilterSet):
     class Meta:
         model = Tudo
         fields = ['goal_name', 'category', 'created_at']
-
-
-class UserSearchFilter(filters.FilterSet):
-    email = filters.CharFilter(
-        field_name="email", lookup_expr='iexact')
-
-    class Meta:
-        model = User
-        fields = ['email']

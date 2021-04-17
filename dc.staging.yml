@@ -1,24 +1,24 @@
-version: "3.3"
+version: '3.3'
 
 services:
-  tudo-api:
+  goal-api:
     build: .
-    image: tudo-api:staging
-    container_name: tudo-api
+    image: goal-api:staging
+    container_name: goal-api
     restart: unless-stopped
     ports:
-      - "1000:8000"
+      - '1000:8000'
     volumes:
-      - .:/tudo-api
+      - .:/goal-api
     depends_on:
-      - tudo-redis
+      - goal-redis
 
-  tudo-redis:
+  goal-redis:
     image: redis
-    container_name: tudo-redis
+    container_name: goal-redis
     restart: unless-stopped
     ports:
-      - "6378:6379"
+      - '6378:6379'
     volumes:
       # Create these volumes on the project root directory
-      - ./tudo_redis:/data
+      - ./goal_redis:/data

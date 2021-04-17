@@ -1,6 +1,6 @@
-# FundMyGoals
+# FundMe
 
-FundMyGoals is a app intended to help user achieve their financial goals from the the internet.
+FundMe is a crowd-funding platform designed to help users achieve their financial goals.
 
 <!-- ## Code Coverage -->
 
@@ -9,8 +9,8 @@ FundMyGoals is a app intended to help user achieve their financial goals from th
 ## Installing
 
 ```sh
-    $ git clone https://github.com/jesseinit/fund-my-goals.git
-    $ cd fund-my-goals
+    $ git clone https://github.com/jesseinit/fundme-backend.git
+    $ cd fundme-backend
     $ git checkout main
     $ python -m venv venv
     $ source venv/bin/acivate
@@ -18,7 +18,7 @@ FundMyGoals is a app intended to help user achieve their financial goals from th
 ```
 
 - Create a `.env` file and copy/paste the environment variables from the `.env_example` file that's already existent in the root project directory.
-- Create a postgreSQL database called `fund_milly_dev` using the default `postgres` user and change the value of variable `DB_PASSWORD` in your `.env` file to your `postgres` user's password.
+- Create a postgreSQL database called `fundme_db` using the default `postgres` user and change the value of variable `DB_PASSWORD` in your `.env` file to your `postgres` user's password.
 - Run the following commands to make the database migrations.
 
 ```sh
